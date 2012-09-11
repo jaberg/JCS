@@ -1,5 +1,5 @@
-drunken-octo-nemesis
-====================
+JCS
+===
 
 This project is to try out an idea for a new interface for Theano.
 
