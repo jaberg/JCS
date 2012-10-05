@@ -1,6 +1,11 @@
 import numpy as np
 
 
+def export(f):
+    f._pnir_export = True
+    return f
+
+
 class property_any(property):
 
     def __init__(self, variable):
@@ -33,7 +38,7 @@ class property_numpy(property):
         return np.asarray(value)
 
 
-def ModuleFactory(*args, **kwargs):
+def ModuleFactory():
     class Module_(object):
         def __init__(self, *args, **kwargs):
             self.states = {}

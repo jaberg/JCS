@@ -9,7 +9,8 @@ b) a standalone function-system description for theano.load_py
 
 import numpy as np
 from contracts import contract
-from autodiff import grad
+from pnir import grad
+from pnir.module import export
 
 w = np.random.rand(100)
 b = np.random.rand()
@@ -23,6 +24,7 @@ x_spec = 'array[Mx100](float64)'
 y_spec = 'array[M](int,(-1|1))'
 
 
+@export
 @contract(x=x_spec, y=y_spec)
 def train_update(x, y):
     global w, b
@@ -32,6 +34,7 @@ def train_update(x, y):
     b -= lr * gb
 
 
+@export
 @contract(x=x_spec)
 def predict(x):
     return np.sign(np.dot(x, w) + b)
